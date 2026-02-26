@@ -1,0 +1,362 @@
+/* --- 1. Reset & Variables --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --tiktok-black: #010101;
+    --tiktok-cyan: #25f4ee;
+    --tiktok-pink: #fe2c55;
+    --card-bg: #1e293b;
+    --font-main: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-bottom: 80px; /* Space for sticky button */
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- 2. Navbar --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 0;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -1px;
+}
+
+.logo span { color: var(--tiktok-pink); }
+
+.hamburger {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+    display: none; /* Default hidden on desktop */
+}
+
+/* --- 3. Hero Section --- */
+.hero {
+    padding-top: 120px;
+    padding-bottom: 60px;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(254, 44, 85, 0.2);
+    color: var(--tiktok-pink);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border: 1px solid var(--tiktok-pink);
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, var(--tiktok-cyan), var(--tiktok-pink));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    margin-bottom: 30px;
+}
+
+/* Countdown */
+.countdown-box {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.countdown-box p { font-size: 0.9rem; margin-bottom: 5px; color: #cbd5e1; }
+.timer { font-size: 1.5rem; font-weight: 700; color: var(--tiktok-pink); font-family: monospace; }
+
+/* Buttons */
+.btn-tiktok {
+    background: var(--tiktok-black);
+    color: white;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn-tiktok:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(37, 244, 238, 0.3);
+    border-color: var(--tiktok-cyan);
+}
+
+/* Pulse Animation for CTA */
+.pulse-btn {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(254, 44, 85, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(254, 44, 85, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(254, 44, 85, 0); }
+}
+
+.small-text {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Hero Image */
+.hero-image { position: relative; }
+.hero-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-card {
+    position: absolute;
+    bottom: 30px;
+    left: -20px;
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: float 5s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* --- 4. Video Review --- */
+.video-review { padding: 80px 0; background: #131c31; }
+.section-header { text-align: center; margin-bottom: 50px; }
+.section-header h2 { font-size: 2.2rem; margin-bottom: 10px; }
+.section-header p { color: #94a3b8; }
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.video-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.video-placeholder {
+    height: 400px; /* Aspect Ratio TikTok */
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    position: relative;
+}
+/* Bisa diganti iframe TikTok asli nanti */
+.video-placeholder:hover { color: var(--tiktok-pink); }
+
+.video-card p { padding: 15px; text-align: center; font-weight: 600; }
+
+/* --- 5. Features --- */
+.features { padding: 80px 0; }
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.3s;
+}
+
+.feature-card:hover { transform: translateY(-5px); border-color: var(--tiktok-cyan); }
+.feature-card i { font-size: 2.5rem; color: var(--tiktok-cyan); margin-bottom: 20px; }
+.feature-card h3 { margin-bottom: 10px; }
+.feature-card p { color: #94a3b8; font-size: 0.9rem; }
+
+/* --- 6. Testimonials --- */
+.testimonials { padding: 80px 0; background: #131c31; }
+.testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.testi-card {
+    background: var(--bg-color);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.stars { color: #fbbf24; font-size: 0.8rem; }
+.testi-card p { color: #cbd5e1; font-style: italic; }
+
+/* --- 7. Final CTA --- */
+.final-cta {
+    padding: 100px 0;
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg-color) 0%, #1e1b4b 100%);
+}
+
+.final-cta h2 { font-size: 2.5rem; margin-bottom: 20px; }
+.final-cta p { color: #94a3b8; margin-bottom: 40px; }
+.btn-large { padding: 20px 50px; font-size: 1.2rem; }
+
+/* --- 8. Footer --- */
+footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: #64748b; font-size: 0.9rem; }
+
+/* --- 9. Sticky Bottom Button (Mobile) --- */
+.sticky-bottom-cta {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    z-index: 999;
+    display: none; /* Hidden on desktop */
+}
+
+.sticky-bottom-cta .btn-tiktok {
+    width: 100%;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* --- 10. Animations --- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 11. Responsive --- */
+@media (max-width: 768px) {
+    .hamburger { display: block; }
+    
+    .hero-content { grid-template-columns: 1fr; text-align: center; }
+    .hero-text h1 { font-size: 2.2rem; }
+    .hero-btns { justify-content: center; }
+    .floating-card { left: 50%; transform: translateX(-50%); bottom: -20px; width: max-content; }
+    .hero-image { margin-top: 40px; }
+    
+    .sticky-bottom-cta { display: block; } /* Show on mobile */
+    
+    /* Mobile Menu */
+    .nav-links-mobile {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--card-bg);
+        padding: 20px;
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-links-mobile.active { display: flex; }
+    .nav-links-mobile a { font-weight: 600; }
+}
